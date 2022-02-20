@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script>
+        window.onload = function () {
+            new Vue({
+                el:'#my',
+                data:{
+                    text:'hello world!!!',
+                    flag:true,
+                    flag1:['html'],
+                    flag2:['1'],
+                    box:[
+                        {name:'北京',id:1},
+                        {name:'上海',id:2},
+                        {name:'广东',id:3},
+                        {name:'广西',id:4}
+                    ],
+                    flag3:[2],
+                    radio:'0',
+                    select:'打游戏',
+                    select1:1,
+                    text2:'hello world!!!'
+                },
+                methods:{
+
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="my">
+    <!-- 输入框 -->
+    <input type="text" v-model="text"/>{{text}}
+    <input type="text" :disabled="text=='a'" v-model="text"/>{{text}}
+
+    <!-- 复选框 -->
+    <div>
+        <input type="checkbox" v-model="flag"/>{{flag}}
+    </div>
+    <!-- 复选框 组 展示的是什么，显示的就是什么 -->
+    <div>
+        <input type="checkbox" v-model="flag1" value="html"/>html
+        <input type="checkbox" v-model="flag1" value="css"/>css
+        <input type="checkbox" v-model="flag1" value="vue"/>vue
+        <h4>{{flag1}}</h4>
+    </div>
+    <!-- 复选框 组 传给后端的值由 value 决定 -->
+    <div>
+        <input type="checkbox" v-model="flag2" value="0"/>html
+        <input type="checkbox" v-model="flag2" value="1"/>css
+        <input type="checkbox" v-model="flag2" value="2"/>vue
+        <h4>{{flag2}}</h4>
+    </div>
+    <!-- 复选框 组 动态数据 -->
+    <div v-for="(v,i) in box" :key="v.id">
+        <input type="checkbox" v-model="flag3" :value="v.id"/>{{v.name}}
+    </div>
+    <h4>{{flag3}}</h4>
+
+
+    <!-- 单选框 -->
+    <div>
+        <input type="radio" v-model="radio" value="0"/>男
+    </div>
+    <!-- 单选框 组 -->
+    <div>
+        <input type="radio" v-model="radio" name="test" value="0"/>男
+        <input type="radio" v-model="radio" name="test" value="1"/>女
+        <h4>{{radio}}</h4>
+    </div>
+
+
+    <!-- 下拉框 -->
+    <div>
+        <select v-model="select">
+            <option>唱歌</option>
+            <option>跳舞</option>
+            <option>打游戏</option>
+        </select>
+        <h4>{{select}}</h4>
+    </div>
+    <div>
+        <select v-model="select1">
+            <option value="0">唱歌</option>
+            <option value="1">跳舞</option>
+            <option value="2">打游戏</option>
+        </select>
+        <h4>{{select1}}</h4>
+    </div>
+    <div>
+        <select v-model="select1">
+            <option v-for="(v,i) in box" :key="v.id" value="v.id">{{v.name}}</option>
+        </select>
+        <h4>{{select1}}</h4>
+    </div>
+
+
+    <!-- 修饰符 -->
+    <div>
+        <!-- lazy 在 input 光标离开时值的改变 -->
+        <input type="text" v-model.lazy="text2"/>{{text2}}
+        <!-- trim 自动过滤收尾空格 -->
+        <input type="text" v-model.trim="text2"/>{{text2}}
+    </div>
+
+</div>
+</body>
+</html>

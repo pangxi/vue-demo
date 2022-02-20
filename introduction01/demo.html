@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script type="text/javascript" src='js/vue.js'></script>
+    <script type="text/javascript" src='js/axios.js'></script>
+    <script type="text/javascript" src="js"></script>
+</head>
+<body>
+<div id="my">
+    <input type="text" v-model="name">
+    <!-- 默认写法 -->
+    <ul class="tab-tit">
+        <li v-bind:class="n==0?'active':''" class="active" v-on:click="action(0)">标题一{{n}}</li>
+        <li v-bind:class="n==1?'active':''" @click="n=1">标题二</li>
+        <li v-bind:class="n==2?'active':''" @click="action(2)">标题三</li>
+        <li>标题四</li>
+    </ul>
+    <div class="tab-con">
+        <div v-show="n==0">
+            内容一
+        </div>
+        <div v-if="n==1">
+            内容二
+        </div>
+        <div v-show="n==2">
+            内容三
+        </div>
+        <div v-show="n==3">
+            内容四
+        </div>
+    </div>
+
+    <!-- 数组 -->
+    <ul class="tab-tit">
+        <li v-for="(v,i) in title" :key="i" :class="n==i?'active':''" v-on:click="action(i)">{{v}}</li>
+    </ul>
+    <div class="tab-con">
+        <div v-for="(v,i) in content" :key="i" v-show="n==i">
+            {{v}}
+        </div>
+    </div>
+
+
+    <!-- 数组对象 -->
+    <ul class="tab-tit">
+        <li v-for="(v,i) in obj" :key="i" :class="n==i?'active':''" v-on:click="action(i)">{{v.title}}</li>
+    </ul>
+    <div class="tab-con">
+        <div v-for="(v,i) in obj" :key="i" v-show="n==i">
+            {{v.content}}
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

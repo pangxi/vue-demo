@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script>
+        window.onload = function () {
+            new Vue({
+                el:'#my',
+                data:{
+                    red:'red',
+                    green:{color:'green'},
+                    d2:'d2',
+                    background:{background: '#999'},
+                    url:'https://www.baidu.com/img/PC_880906d2a4ad95f5fafb2e540c5cdad7.png',
+                    flag:true
+                },
+                methods:{
+                    action:function (i) {
+                        switch (i) {
+                            case 1:
+                                return 'red'
+                            case 2:
+                                return 'blue'
+                            default:
+                                return 'd2'
+                        }
+                    }
+                }
+            })
+        }
+    </script>
+    <style>
+        .red{
+            color: red;
+        }
+        .blue{
+            color: blue;
+        }
+        .d1{
+            border: 1px solid #666;
+        }
+        .d2{
+            background: #999;
+        }
+    </style>
+</head>
+<body>
+<div id="my">
+    <!-- 单个引用 -->
+    <div class="red">这是什么颜色</div>
+    <!-- 表示red是一个变量-->
+    <div v-bind:class="red">这是什么颜色</div>
+    <!-- 表示样式名"'blue'"-->
+    <div :class="'blue'">这是什么颜色</div>
+
+
+    <!-- 多个引用 -->
+    <!-- red表示变量,'d'表示样式名  引用样式需要加引号 -->
+    <div :class="[red,'d1']">多个引用</div>
+    <div :class="[red,flag?'d1':'d2']">多个引用</div>
+
+
+    <!-- 三目运算 -->
+    <input type="checkbox" v-model="flag"/>
+    <div :class="flag?'red':'blue'">这是什么颜色</div>
+    <!-- 键值对  {'样式名':判断条件} -->
+    <div :class="{'blue':flag}">这是什么颜色</div>
+
+
+    <!-- 条件是函数 -->
+    <div :class="action(1)">这是什么颜色</div>
+
+
+    <!-- 单个引用 -->
+    <div style="color: red">内联样式</div>
+
+    <!-- 变量 -->
+    <div :style="{color:'blue'}">内联样式</div>
+    <div :style="green">内联样式</div>
+
+    <!-- 多个引用 -->
+    <div :style="{color:'blue',fontSize:'6px',marginTop:'30px'}">内联样式</div>
+    <div :style="[green,background]">内联样式</div>
+
+
+    <img src="https://www.baidu.com/img/PC_880906d2a4ad95f5fafb2e540c5cdad7.png" />
+    <img :src="url" />
+
+</div>
+</body>
+</html>

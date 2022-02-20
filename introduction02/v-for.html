@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script>
+        window.onload = function () {
+            new Vue({
+                el:'#my',
+                data:{
+                    arr:['a','b','c'],
+                    obj:{id:'1',name:'abc'},
+                    lists:[
+                        {name:'A',state:'0'},
+                        {name:'B',state:'1'}
+                    ],
+                    n:5
+                },
+                methods:{
+
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="my">
+    <ul>
+        <!-- 遍历数组 v value  i index（索引信息） -->
+        <li v-for="(v,i) in arr" :key="i">{{v}}----{{i}}</li>
+    </ul>
+
+    <ul>
+        <!-- 遍历对象 v value  i key（键的值） -->
+        <li v-for="(v,k) in obj">{{v}}----{{k}}</li>
+    </ul>
+
+    <ul>
+        <!-- 遍历数组对象 v {name:'A',state:'0'}   i 对象 -->
+        <li v-for="(v,i) in lists">{{v}}----{{i}}</li>
+    </ul>
+
+    <ul>
+        <!-- 遍历数值 v value  i index（索引信息） -->
+        <li v-for="(v,i) in n">{{v}}----{{i}}</li>
+    </ul>
+
+    <ul>
+        <!-- 遍历数值 v value  i index（索引信息） -->
+        <li v-for="(v,i) in 8">{{v}}----{{i}}</li>
+    </ul>
+</div>
+</body>
+</html>
